@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://5a6xul3u481j"]
+
+[ext_resource type="Script" path="res://Stages/StageLimits.gd" id="1_ah7a0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27pl0"]
+size = Vector2(20, 855)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi4v0"]
+size = Vector2(20, 933)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31bcb"]
+size = Vector2(23.0025, 1438)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjhkw"]
+size = Vector2(20, 1276)
+
+[node name="Limits" type="Node2D"]
+script = ExtResource("1_ah7a0")
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(-63, 310)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(3, 33)
+shape = SubResource("RectangleShape2D_27pl0")
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(1220, 329)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(0, 28.5)
+shape = SubResource("RectangleShape2D_qi4v0")
+
+[node name="Up" type="Area2D" parent="."]
+position = Vector2(581, -50)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2(-8.9999, 27)
+shape = SubResource("RectangleShape2D_31bcb")
+
+[node name="Down" type="Area2D" parent="."]
+position = Vector2(585, 728)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+shape = SubResource("RectangleShape2D_bjhkw")
+
+[node name="LeftPoint" type="Marker2D" parent="."]
+position = Vector2(-14, 305)
+
+[node name="RightPoint" type="Marker2D" parent="."]
+position = Vector2(1162, 305)
+
+[node name="UpPoint" type="Marker2D" parent="."]
+position = Vector2(585, -15)
+
+[node name="DownPoint" type="Marker2D" parent="."]
+position = Vector2(583, 676)

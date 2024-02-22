@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d0n3nqyxcgwle"]
+
+[ext_resource type="FontFile" uid="uid://bcsnhfwy63s8g" path="res://Assets/Fonts/Oldgouache-Regular.ttf" id="1_on8yx"]
+[ext_resource type="FontFile" uid="uid://dhehkj37qs2g2" path="res://Assets/Fonts/Oldguachesymplified-Regular.ttf" id="2_24ljk"]
+
+[resource]
+Button/colors/font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+Button/colors/font_focus_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+Button/colors/font_hover_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+Button/colors/font_hover_pressed_color = Color(0.645551, 2.56296e-06, 4.81307e-07, 1)
+Button/fonts/font = ExtResource("1_on8yx")
+Label/colors/font_color = Color(0.611765, 0, 0, 1)
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("2_24ljk")
+MenuButton/colors/font_color = Color(0.517647, 0.00392157, 0, 1)
+MenuButton/colors/font_focus_color = Color(0.647059, 0, 0, 1)
+MenuButton/colors/font_hover_color = Color(0.94902, 0, 0, 1)
+MenuButton/colors/font_pressed_color = Color(0.658824, 0, 0, 1)
+MenuButton/fonts/font = ExtResource("1_on8yx")

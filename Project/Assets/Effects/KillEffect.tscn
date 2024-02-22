@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbwsg7qnuo826"]
+
+[ext_resource type="Script" path="res://Assets/Effects/KillEffect.gd" id="1_1lig4"]
+[ext_resource type="Texture2D" uid="uid://eqpjtbt1ohfw" path="res://Assets/Inks/InkSmallDarkRedSprites.png" id="1_7vjtg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5rpu1"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_2i6hm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.526667, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jgtf8"]
+curve = SubResource("Curve_2i6hm")
+
+[sub_resource type="Curve" id="Curve_2b4n5"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0989012), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f3ja6"]
+curve = SubResource("Curve_2b4n5")
+
+[sub_resource type="Curve" id="Curve_a1m1h"]
+_data = [Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bmss5"]
+curve = SubResource("Curve_a1m1h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlsyh"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 50.0
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_bmss5")
+alpha_curve = SubResource("CurveTexture_jgtf8")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_f3ja6")
+anim_offset_max = 1.0
+
+[node name="KillEffect" type="Node2D"]
+script = ExtResource("1_1lig4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5rpu1")
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_qlsyh")
+texture = ExtResource("1_7vjtg")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0

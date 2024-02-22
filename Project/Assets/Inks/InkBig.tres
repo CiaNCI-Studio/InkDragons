@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cjwngmmmyewti"]
+
+[ext_resource type="Texture2D" uid="uid://cw65e70qmqy84" path="res://Assets/Inks/InkBigSprites.png" id="1_jvpf0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63koe"]
+atlas = ExtResource("1_jvpf0")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wbd"]
+atlas = ExtResource("1_jvpf0")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atrpw"]
+atlas = ExtResource("1_jvpf0")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enxat"]
+atlas = ExtResource("1_jvpf0")
+region = Rect2(768, 0, 256, 256)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63koe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7wbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atrpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enxat")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

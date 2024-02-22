@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://jscigr4kb0hi"]
+
+[ext_resource type="Script" path="res://Components/SolidBlock.gd" id="1_et3qf"]
+[ext_resource type="Texture2D" uid="uid://cd7en1jjkwd0a" path="res://Assets/Blocks/FixedBlock.png" id="1_wy251"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8di14"]
+size = Vector2(70, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v0iy"]
+size = Vector2(82, 81)
+
+[node name="SolidBlock" type="StaticBody2D"]
+script = ExtResource("1_et3qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_wy251")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.00351448
+shape = SubResource("RectangleShape2D_8di14")
+
+[node name="Area2D" type="Area2D" parent="." groups=["block"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6v0iy")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

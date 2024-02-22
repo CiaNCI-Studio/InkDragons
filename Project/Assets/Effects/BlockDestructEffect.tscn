@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqrjn3k60s75u"]
+
+[ext_resource type="Script" path="res://Assets/Effects/KillEffect.gd" id="1_du8um"]
+[ext_resource type="Texture2D" uid="uid://bdrmvocovlpye" path="res://Assets/Inks/InkSmallBlackSprites.png" id="1_sa7mk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ipshj"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ye012"]
+_data = [Vector2(0.36, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wespd"]
+curve = SubResource("Curve_ye012")
+
+[sub_resource type="Curve" id="Curve_xn2l8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_svfef"]
+curve = SubResource("Curve_xn2l8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jel5y"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_svfef")
+alpha_curve = SubResource("CurveTexture_wespd")
+anim_offset_max = 1.0
+
+[node name="BlockDestructEffect" type="Node2D"]
+script = ExtResource("1_du8um")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ipshj")
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_jel5y")
+texture = ExtResource("1_sa7mk")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

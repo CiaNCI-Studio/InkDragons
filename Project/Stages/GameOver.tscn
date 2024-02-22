@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbemyqwos4jku"]
+
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="1_w37km"]
+[ext_resource type="Script" path="res://Stages/GameOver.gd" id="1_yf7bg"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="2_a0yp2"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="3_d0flx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cn8gs"]
+blend_mode = 1
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_yf7bg")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("1_w37km")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_cn8gs")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("2_a0yp2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 295.0
+offset_top = 274.0
+offset_right = 679.0
+offset_bottom = 355.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_d0flx")
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 747.0
+offset_top = 487.0
+offset_right = 1119.0
+offset_bottom = 611.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MainMenu" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d0flx")
+theme_override_font_sizes/font_size = 40
+text = "MENU PRINCIPAL"
+flat = true
+
+[connection signal="pressed" from="Control/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

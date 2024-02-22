@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt0ppduvddxc8"]
+
+[ext_resource type="Script" path="res://Stages/About.gd" id="1_0kq2d"]
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="1_l23jm"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="2_h75oy"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="3_kgkw5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tnjop"]
+blend_mode = 1
+
+[node name="About" type="Node2D"]
+script = ExtResource("1_0kq2d")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("1_l23jm")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 447.0
+offset_bottom = 96.0
+scale = Vector2(1.33606, 1.43492)
+theme = ExtResource("2_h75oy")
+theme_override_font_sizes/font_size = 80
+text = "Ink Dragon"
+uppercase = true
+
+[node name="About" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 137.0
+offset_top = 154.0
+offset_right = 708.0
+offset_bottom = 477.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.33606, 1.43492)
+theme = ExtResource("2_h75oy")
+theme_override_font_sizes/font_size = 25
+text = "InkDragon
+CiaNCI Studio
+
+Arte - KelvysB.
+Design de personagem - KelvysB.
+Design de level - KelvysB.
+Texturas - KelvysB.
+Programação - KelvysB.
+Musica - 
+	Random Gods por likantropika
+	Horror Loop por TinyWorlds"
+uppercase = true
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 924.0
+offset_top = 577.0
+offset_right = 1140.0
+offset_bottom = 643.0
+theme = ExtResource("2_h75oy")
+theme_override_font_sizes/font_size = 40
+text = "VOLTAR"
+flat = true
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_tnjop")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("3_kgkw5")
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

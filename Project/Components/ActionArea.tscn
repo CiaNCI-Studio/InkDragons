@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bejp05w8866c2"]
+
+[ext_resource type="Script" path="res://Components/ActionArea.gd" id="1_h2pxy"]
+[ext_resource type="Texture2D" uid="uid://ddnoq3ktu0u0k" path="res://Assets/Inks/Area.png" id="1_q0hvu"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="2_60r0e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evmja"]
+size = Vector2(118, 108)
+
+[node name="ActionArea" type="Node2D"]
+script = ExtResource("1_h2pxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_q0hvu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -16.5
+offset_right = 38.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_60r0e")
+text = "TEXT
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_evmja")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7g0brxa75tah"]
+
+[ext_resource type="Script" path="res://Assets/Effects/KillEffect.gd" id="1_rk2td"]
+[ext_resource type="Texture2D" uid="uid://d1mt0p4475cah" path="res://Assets/Inks/BlueFireSprites.png" id="2_7yd6r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0vf7f"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ls17h"]
+_data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ciplf"]
+curve = SubResource("Curve_ls17h")
+
+[sub_resource type="Curve" id="Curve_m2p6n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.56044), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g3g7p"]
+curve = SubResource("Curve_m2p6n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_62rao"]
+particle_flag_disable_z = true
+angle_max = 360.0
+direction = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_g3g7p")
+alpha_curve = SubResource("CurveTexture_ciplf")
+
+[node name="ProjectileDestructionEffect" type="Node2D"]
+script = ExtResource("1_rk2td")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_0vf7f")
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_62rao")
+texture = ExtResource("2_7yd6r")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc3sd78nir6ag"]
+
+[ext_resource type="Script" path="res://Player/InkTrail.gd" id="1_l2cy4"]
+[ext_resource type="SpriteFrames" uid="uid://cjwngmmmyewti" path="res://Assets/Inks/InkBig.tres" id="2_jy3ux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juyy2"]
+
+[node name="InkTrail" type="Node2D" groups=["trail"]]
+script = ExtResource("1_l2cy4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_juyy2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("2_jy3ux")
+animation = &"new_animation"
+speed_scale = 0.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

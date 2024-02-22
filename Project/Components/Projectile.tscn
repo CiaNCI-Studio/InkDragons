@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyhgxibcf1xgi"]
+
+[ext_resource type="Script" path="res://Components/Projectile.gd" id="1_m4yix"]
+[ext_resource type="Texture2D" uid="uid://24xnmmmqiboj" path="res://Assets/Inks/DragonBreath.png" id="2_y20bp"]
+[ext_resource type="Texture2D" uid="uid://d1mt0p4475cah" path="res://Assets/Inks/BlueFireSprites.png" id="3_ll8v8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g88av"]
+radius = 12.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8788u"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_eya2q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m3mty"]
+curve = SubResource("Curve_eya2q")
+
+[sub_resource type="Curve" id="Curve_x0emy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hlay4"]
+curve = SubResource("Curve_x0emy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_til56"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = 90.0
+angle_max = 90.0
+direction = Vector3(-1, 0, 0)
+spread = 4.551
+initial_velocity_min = 20.0
+initial_velocity_max = 132.36
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_hlay4")
+alpha_curve = SubResource("CurveTexture_m3mty")
+anim_offset_max = 1.0
+
+[node name="Projectile" type="RigidBody2D" groups=["projectile"]]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_m4yix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g88av")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_y20bp")
+
+[node name="Trails" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_8788u")
+position = Vector2(4, 0)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_til56")
+texture = ExtResource("3_ll8v8")
+lifetime = 0.5

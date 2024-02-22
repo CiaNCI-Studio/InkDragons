@@ -1,0 +1,193 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4w502nr6epji"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_ey1qr"]
+[ext_resource type="Texture2D" uid="uid://clbay7dpv8yad" path="res://Assets/Dragon/DragonPartsBody.png" id="2_8frgv"]
+[ext_resource type="Texture2D" uid="uid://8hocjna3i8ha" path="res://Assets/Dragon/DragonPartsHead.png" id="2_hh6c6"]
+[ext_resource type="Texture2D" uid="uid://c8i84bqialmld" path="res://Assets/Inks/InkSmallRedSprites.png" id="4_stnu4"]
+[ext_resource type="PackedScene" uid="uid://ip458jvxum5a" path="res://UI/HUD.tscn" id="5_1dxof"]
+[ext_resource type="PackedScene" uid="uid://dl57yv004ohwb" path="res://UI/Pause.tscn" id="6_qwx0b"]
+
+[sub_resource type="Curve" id="Curve_e28s5"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.533333, -257.143), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yr33t"]
+curve = SubResource("Curve_e28s5")
+
+[sub_resource type="Curve" id="Curve_t4y5g"]
+_data = [Vector2(0, 1), 0.0, 0.902138, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7dgg8"]
+curve = SubResource("Curve_t4y5g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pemqu"]
+particle_flag_align_y = true
+angle_min = 90.0
+angle_max = 90.0
+angle_curve = SubResource("CurveTexture_yr33t")
+velocity_pivot = Vector3(1, 0, 0)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_7dgg8")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kme6l"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_nhafo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vgkio"]
+curve = SubResource("Curve_nhafo")
+
+[sub_resource type="CurveTexture" id="CurveTexture_f0x0r"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ub4a2"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+color = Color(0.619608, 0.619608, 0.619608, 1)
+alpha_curve = SubResource("CurveTexture_vgkio")
+emission_curve = SubResource("CurveTexture_f0x0r")
+anim_offset_max = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7t28l"]
+radius = 23.0
+height = 62.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5wui"]
+radius = 7.07107
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 10
+script = ExtResource("1_ey1qr")
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-40, 0)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_pemqu")
+texture = ExtResource("2_8frgv")
+trail_sections = 2
+
+[node name="SideParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_kme6l")
+position = Vector2(-7, 0)
+rotation = -0.00522727
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ub4a2")
+texture = ExtResource("4_stnu4")
+
+[node name="HeadSprite" type="Sprite2D" parent="."]
+position = Vector2(10, -3.55271e-14)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_hh6c6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1.20371e-35)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_7t28l")
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="GunPoint" type="Marker2D" parent="."]
+position = Vector2(31, 0)
+
+[node name="TrailPoint" type="Marker2D" parent="."]
+
+[node name="ContactArea" type="Area2D" parent="." groups=["player_contact"]]
+position = Vector2(30, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+shape = SubResource("CircleShape2D_g5wui")
+
+[node name="Tail" type="Node2D" parent="."]
+visible = false
+position = Vector2(10, 0)
+
+[node name="Tail6" type="Node2D" parent="Tail"]
+position = Vector2(-200, 0)
+
+[node name="Tail6Sprite" type="Sprite2D" parent="Tail/Tail6"]
+position = Vector2(-7, 1)
+rotation = 1.5708
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_8frgv")
+
+[node name="Tail5" type="Node2D" parent="Tail"]
+position = Vector2(-178, 0)
+
+[node name="Tail5Sprite" type="Sprite2D" parent="Tail/Tail5"]
+position = Vector2(-7, 1)
+rotation = 1.5708
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_8frgv")
+
+[node name="Tail4" type="Node2D" parent="Tail"]
+position = Vector2(-146, 0)
+
+[node name="Tail4Sprite" type="Sprite2D" parent="Tail/Tail4"]
+position = Vector2(-14, 1)
+rotation = 1.5708
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_8frgv")
+
+[node name="Tail3" type="Node2D" parent="Tail"]
+position = Vector2(-116, 0)
+
+[node name="Tail3Sprite" type="Sprite2D" parent="Tail/Tail3"]
+position = Vector2(-14, 1)
+rotation = 1.5708
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_8frgv")
+
+[node name="Tail2" type="Node2D" parent="Tail"]
+position = Vector2(-80, 0)
+
+[node name="Tail2Sprite" type="Sprite2D" parent="Tail/Tail2"]
+position = Vector2(-17, 1)
+rotation = 1.5708
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("2_8frgv")
+
+[node name="Tail1" type="Node2D" parent="Tail"]
+position = Vector2(-39, 0)
+
+[node name="Tail1Sprite" type="Sprite2D" parent="Tail/Tail1"]
+position = Vector2(-20, 1)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8frgv")
+
+[node name="FlashTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("5_1dxof")]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("6_qwx0b")]
+visible = false
+
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

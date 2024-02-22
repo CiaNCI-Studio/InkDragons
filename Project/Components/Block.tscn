@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdah5cfgfj0ob"]
+
+[ext_resource type="Script" path="res://Components/Block.gd" id="1_nvk6w"]
+[ext_resource type="Texture2D" uid="uid://cfmg5h5h1q3lu" path="res://Assets/Blocks/Block.png" id="2_4uu6b"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="3_tiv8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pj6cv"]
+size = Vector2(73, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ap8j"]
+size = Vector2(82, 81)
+
+[node name="Block" type="StaticBody2D" groups=["block"]]
+script = ExtResource("1_nvk6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_pj6cv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_4uu6b")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlockLife" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -16.0
+offset_right = 11.0
+offset_bottom = 17.0
+theme = ExtResource("3_tiv8i")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["block"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_1ap8j")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

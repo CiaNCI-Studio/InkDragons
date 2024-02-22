@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://kiyifs7o530n"]
+
+[ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_e1328"]
+[ext_resource type="PackedScene" uid="uid://c4w502nr6epji" path="res://Player/Player.tscn" id="1_sh7fk"]
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_rpk1w"]
+[ext_resource type="PackedScene" uid="uid://cdah5cfgfj0ob" path="res://Components/Block.tscn" id="3_gbccr"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="5_16cwl"]
+[ext_resource type="PackedScene" uid="uid://5a6xul3u481j" path="res://Stages/StageLimits.tscn" id="5_eon0c"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="5_v4kpc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
+blend_mode = 1
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_e1328")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("2_rpk1w")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 49.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("5_16cwl")
+text = "STAGE 1"
+
+[node name="Player" parent="." instance=ExtResource("1_sh7fk")]
+position = Vector2(47, 368)
+
+[node name="Limits" parent="." instance=ExtResource("5_eon0c")]
+
+[node name="Block" parent="." instance=ExtResource("3_gbccr")]
+position = Vector2(811, 219)
+BlockLifes = 3
+
+[node name="Block2" parent="." instance=ExtResource("3_gbccr")]
+position = Vector2(963, 421)
+BlockLifes = 1
+
+[node name="Block3" parent="." instance=ExtResource("3_gbccr")]
+position = Vector2(892, 492)
+BlockLifes = 5
+
+[node name="Block4" parent="." instance=ExtResource("3_gbccr")]
+position = Vector2(816, 491)
+BlockLifes = 5
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_wtqiv")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("5_v4kpc")

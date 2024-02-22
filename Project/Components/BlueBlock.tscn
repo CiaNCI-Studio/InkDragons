@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://e5aof4yo0j22"]
+
+[ext_resource type="Script" path="res://Components/BlueBlock.gd" id="1_tlje4"]
+[ext_resource type="Texture2D" uid="uid://hof82m1326d4" path="res://Assets/Blocks/BlockBlue.png" id="1_uknpq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r51p"]
+size = Vector2(73, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srtf3"]
+size = Vector2(82, 81)
+
+[node name="BlueBlock" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_tlje4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_4r51p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_uknpq")
+
+[node name="Area2D" type="Area2D" parent="." groups=["block"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_srtf3")
+
+[node name="FirePoints" type="Node2D" parent="."]
+
+[node name="UpPoint" type="Marker2D" parent="FirePoints"]
+position = Vector2(0, -59)
+rotation = -1.5708
+
+[node name="DownPoint" type="Marker2D" parent="FirePoints"]
+position = Vector2(0, 55)
+rotation = 1.5708
+
+[node name="RightPoint" type="Marker2D" parent="FirePoints"]
+position = Vector2(61, 0)
+
+[node name="LeftPoint" type="Marker2D" parent="FirePoints"]
+position = Vector2(-61, 0)
+rotation = 3.14159
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
