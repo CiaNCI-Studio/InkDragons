@@ -50,6 +50,7 @@ collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_m4yix")
+LifeTime = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g88av")

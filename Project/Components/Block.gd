@@ -2,11 +2,12 @@ extends StaticBody2D
 const BLOCK_DESTRUCT_EFFECT = preload("res://Assets/Effects/BlockDestructEffect.tscn")
 @export var BlockLifes = 2
 @onready var block_life = $Control/BlockLife
-
+const ATARI_FIRE_2 = preload("res://Assets/Audio/atari_fire_2.wav")
+@onready var block_sfx = $BlockSFX
 func _ready():
 	block_life.text = str(BlockLifes)
 
-func Destroy():
+func Destroy():		
 	queue_free()
 
 func _on_area_2d_body_entered(body):

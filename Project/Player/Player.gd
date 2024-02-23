@@ -1,9 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
+const ATARI_FIRE_1 = preload("res://Assets/Audio/atari_fire_1.wav")
+const DAMAGE_TAKEN = preload("res://Assets/Audio/damage_taken.mp3")
 const KILL_EFFECT = preload("res://Assets/Effects/KillEffect.tscn")
 const PROJECTILE = preload("res://Components/Projectile.tscn") as PackedScene
 const INK_TRAIL = preload("res://Player/InkTrail.tscn") as PackedScene
+@onready var player_sfx = $PlayerSFX as AudioStreamPlayer2D
 @onready var gun_point = $GunPoint
 @onready var trail_point = $TrailPoint
 @onready var flash_timer = $FlashTimer as Timer
@@ -19,7 +22,7 @@ var directions = [0.0, 90.0,  180.0,  270.0]
 var currentDirection = 0
 @export var lives = 4
 @export var imunityTime = 3.0
-@export var fireCadence = 0.2
+@export var fireCadence = 0.5
 @export var Imune : bool = false
 var fireTimer = 0.0
 var imunityTimer = 0.0
@@ -56,6 +59,9 @@ func _physics_process(delta):
 
 func Damage():
 	if imunityTimer <= 0.0:
+		player_sfx.stream = DAMAGE_TAKEN
+		player_sfx.volume_db = remap(Constants.SfxVolume, 0.0, 1.0, -60.0, -10.0)
+		player_sfx.play()
 		imunityTimer = imunityTime
 		FlashImunity()	
 		if Imune: 
@@ -81,6 +87,9 @@ func FlashImunity():
 
 func Fire():
 	if fireTimer <= 0:
+		player_sfx.stream = ATARI_FIRE_1
+		player_sfx.volume_db = remap(Constants.SfxVolume, 0.0, 1.0, -60.0, -15.0)
+		player_sfx.play()
 		fireTimer = fireCadence
 		var instance = PROJECTILE.instantiate() as Projectile
 		get_parent().add_child(instance)
@@ -95,11 +104,12 @@ func Pause():
 	pause.visible = true
 	
 func _on_trail_timer_timeout():
-	var instance = INK_TRAIL.instantiate() 
-	get_parent().add_child(instance)
-	instance.z_index = z_index - 1
-	instance.global_position = trail_point.global_position
-	instance.global_rotation = trail_point.global_rotation
+	if lives > 0:
+		var instance = INK_TRAIL.instantiate() 
+		get_parent().add_child(instance)
+		instance.z_index = z_index - 1
+		instance.global_position = trail_point.global_position
+		instance.global_rotation = trail_point.global_rotation
 
 func _on_flash_timer_timeout():
 	if flashOn:

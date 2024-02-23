@@ -13,7 +13,10 @@ config_version=5
 config/name="InkDragons"
 run/main_scene="res://Stages/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://Assets/Graphics/splashgouache.png"
+config/icon="res://Icon.png"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
@@ -21,6 +24,7 @@ Constants="*res://Scripts/GameConstants.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [input]

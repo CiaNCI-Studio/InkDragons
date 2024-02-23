@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://rao7osjlo5li"]
+
+[ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_o232x"]
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_46wg4"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="3_ui8vi"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="4_u7drd"]
+[ext_resource type="PackedScene" uid="uid://c4w502nr6epji" path="res://Player/Player.tscn" id="5_6lynm"]
+[ext_resource type="PackedScene" uid="uid://5a6xul3u481j" path="res://Stages/StageLimits.tscn" id="6_evgna"]
+[ext_resource type="PackedScene" uid="uid://bejp05w8866c2" path="res://Components/ActionArea.tscn" id="7_yph23"]
+[ext_resource type="PackedScene" uid="uid://jscigr4kb0hi" path="res://Components/SolidBlock.tscn" id="8_16j3l"]
+[ext_resource type="PackedScene" uid="uid://cdah5cfgfj0ob" path="res://Components/Block.tscn" id="8_arxl2"]
+[ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="9_lqkie"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
+blend_mode = 1
+
+[node name="Stage" type="Node2D" node_paths=PackedStringArray("ExitPoint", "StageLabel", "HintLabel", "MusicPlayer")]
+script = ExtResource("1_o232x")
+ExitPoint = NodePath("ActionArea")
+StageLabel = NodePath("Control/Label")
+HintLabel = NodePath("Control/Hint")
+HintKey = "HINT2"
+NextStage = "res://Stages/Stage4.tscn"
+StageNumber = "3"
+MusicPlayer = NodePath("AudioStreamPlayer")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("2_46wg4")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_wtqiv")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("3_ui8vi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 49.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("4_u7drd")
+text = "STAGE"
+
+[node name="Hint" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 584.0
+offset_right = 499.0
+offset_bottom = 617.0
+theme = ExtResource("4_u7drd")
+
+[node name="Player" parent="." instance=ExtResource("5_6lynm")]
+position = Vector2(40, 304)
+lives = 3
+
+[node name="Limits" parent="." instance=ExtResource("6_evgna")]
+
+[node name="ActionArea" parent="." instance=ExtResource("7_yph23")]
+position = Vector2(936, 328)
+AreaText = "NEXT"
+Key = "EXIT"
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="SolidBlock" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(816, 208)
+
+[node name="SolidBlock2" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(896, 208)
+
+[node name="SolidBlock3" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(976, 208)
+
+[node name="SolidBlock4" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(1056, 208)
+
+[node name="SolidBlock5" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(1056, 288)
+
+[node name="SolidBlock6" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(1056, 368)
+
+[node name="SolidBlock7" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(1056, 448)
+
+[node name="SolidBlock8" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(976, 448)
+
+[node name="SolidBlock9" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(896, 448)
+
+[node name="SolidBlock10" parent="Blocks" instance=ExtResource("8_16j3l")]
+position = Vector2(816, 448)
+
+[node name="Block" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(816, 288)
+BlockLifes = 6
+
+[node name="Block3" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(736, 208)
+
+[node name="Block4" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(736, 288)
+
+[node name="Block5" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(736, 368)
+
+[node name="Block6" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(736, 448)
+
+[node name="Block7" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(432, 208)
+BlockLifes = 1
+
+[node name="Block8" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(432, 288)
+BlockLifes = 1
+
+[node name="Block9" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(432, 368)
+BlockLifes = 1
+
+[node name="Block10" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(432, 448)
+BlockLifes = 1
+
+[node name="Block2" parent="Blocks" instance=ExtResource("8_arxl2")]
+position = Vector2(816, 368)
+BlockLifes = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_lqkie")
+volume_db = -15.0

@@ -1,0 +1,242 @@
+[gd_scene load_steps=13 format=3 uid="uid://cly5wpqaef84g"]
+
+[ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_hcvm7"]
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_ae6al"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="3_7vlm2"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="4_bs08o"]
+[ext_resource type="PackedScene" uid="uid://c4w502nr6epji" path="res://Player/Player.tscn" id="5_sbv4q"]
+[ext_resource type="PackedScene" uid="uid://5a6xul3u481j" path="res://Stages/StageLimits.tscn" id="6_qmfid"]
+[ext_resource type="PackedScene" uid="uid://bejp05w8866c2" path="res://Components/ActionArea.tscn" id="7_2rf14"]
+[ext_resource type="PackedScene" uid="uid://jscigr4kb0hi" path="res://Components/SolidBlock.tscn" id="8_xicm5"]
+[ext_resource type="PackedScene" uid="uid://cdah5cfgfj0ob" path="res://Components/Block.tscn" id="9_82m6i"]
+[ext_resource type="PackedScene" uid="uid://e5aof4yo0j22" path="res://Components/BlueBlock.tscn" id="10_g3wne"]
+[ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="11_2ksih"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
+blend_mode = 1
+
+[node name="Stage" type="Node2D" node_paths=PackedStringArray("ExitPoint", "StageLabel", "MusicPlayer")]
+script = ExtResource("1_hcvm7")
+ExitPoint = NodePath("ActionArea")
+StageLabel = NodePath("Control/Label")
+NextStage = "res://Stages/Stage8.tscn"
+StageNumber = "7"
+MusicPlayer = NodePath("AudioStreamPlayer")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("2_ae6al")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_wtqiv")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("3_7vlm2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 49.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("4_bs08o")
+text = "STAGE"
+
+[node name="Hint" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 472.0
+offset_right = 1127.0
+offset_bottom = 528.0
+theme = ExtResource("4_bs08o")
+
+[node name="Player" parent="." instance=ExtResource("5_sbv4q")]
+position = Vector2(40, 304)
+scale = Vector2(1, 1.00908)
+lives = 3
+
+[node name="Limits" parent="." instance=ExtResource("6_qmfid")]
+
+[node name="ActionArea" parent="." instance=ExtResource("7_2rf14")]
+position = Vector2(78, 96)
+AreaText = "NEXT"
+Key = "EXIT"
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="SolidBlock" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(40, 224)
+
+[node name="SolidBlock2" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(120, 224)
+
+[node name="SolidBlock3" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(200, 224)
+
+[node name="SolidBlock4" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(280, 224)
+
+[node name="SolidBlock10" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(40, 392)
+
+[node name="SolidBlock11" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(120, 392)
+
+[node name="SolidBlock12" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(200, 392)
+
+[node name="SolidBlock13" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(280, 392)
+
+[node name="SolidBlock5" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(360, 224)
+
+[node name="SolidBlock15" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(40, 544)
+
+[node name="SolidBlock16" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(120, 544)
+
+[node name="SolidBlock17" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(200, 544)
+
+[node name="SolidBlock18" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(280, 544)
+
+[node name="SolidBlock19" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(360, 544)
+
+[node name="SolidBlock20" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(784, 384)
+
+[node name="SolidBlock21" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(864, 384)
+
+[node name="SolidBlock22" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(944, 384)
+
+[node name="SolidBlock23" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(1024, 384)
+
+[node name="SolidBlock24" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(1104, 384)
+
+[node name="SolidBlock35" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(784, 624)
+
+[node name="SolidBlock26" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(864, 544)
+
+[node name="SolidBlock32" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(624, 468)
+
+[node name="SolidBlock33" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(624, 552)
+
+[node name="SolidBlock34" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(624, 632)
+
+[node name="SolidBlock36" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(608, 48)
+
+[node name="SolidBlock37" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(608, 136)
+
+[node name="SolidBlock39" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(784, 40)
+
+[node name="SolidBlock40" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(784, 124)
+
+[node name="SolidBlock41" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(784, 208)
+
+[node name="SolidBlock31" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(704, 384)
+
+[node name="SolidBlock27" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(944, 544)
+
+[node name="SolidBlock28" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(1024, 544)
+
+[node name="SolidBlock29" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(1104, 544)
+
+[node name="SolidBlock6" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(440, 224)
+
+[node name="SolidBlock7" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(440, 304)
+
+[node name="SolidBlock8" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(440, 384)
+
+[node name="SolidBlock9" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(440, 464)
+
+[node name="SolidBlock43" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(523, 224)
+
+[node name="SolidBlock44" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(528, 48)
+
+[node name="SolidBlock45" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(448, 48)
+
+[node name="SolidBlock46" parent="Blocks" instance=ExtResource("8_xicm5")]
+position = Vector2(368, 48)
+
+[node name="Block" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(864, 48)
+BlockLifes = 1
+
+[node name="Block7" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(540, 624)
+
+[node name="Block8" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(40, 632)
+
+[node name="Block6" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(523, 304)
+
+[node name="Block9" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(488, 136)
+
+[node name="Block5" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(704, 464)
+
+[node name="Block3" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(360, 312)
+BlockLifes = 1
+
+[node name="Block4" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(40, 472)
+
+[node name="Block2" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(864, 296)
+
+[node name="Block10" parent="Blocks" instance=ExtResource("9_82m6i")]
+position = Vector2(864, 624)
+BlockLifes = 1
+
+[node name="BlueBlock" parent="Blocks" instance=ExtResource("10_g3wne")]
+position = Vector2(360, 464)
+
+[node name="BlueBlock2" parent="Blocks" instance=ExtResource("10_g3wne")]
+position = Vector2(703, 295)
+
+[node name="BlueBlock3" parent="Blocks" instance=ExtResource("10_g3wne")]
+position = Vector2(368, 136)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2ksih")
+volume_db = -15.0

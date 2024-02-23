@@ -1,20 +1,31 @@
 extends Node2D
-@onready var controls = $Control/Controls as Label
+
 @onready var action_area_start = $ActionAreaStart as ActionArea
 @onready var action_area_about = $ActionAreaAbout as ActionArea
 @onready var action_area_quit = $ActionAreaQuit as ActionArea
-@onready var language_menu = $Control/LanguageMenu
+@onready var language_menu = $Control/VBoxContainer/LanguageMenu
+@onready var sfx_label = $Control/VBoxContainer/SFXGroup/SFXLabel 
+@onready var sfx_slider = $Control/VBoxContainer/SFXGroup/SFXSlider as Slider
+@onready var music_label = $Control/VBoxContainer/MusicGroup/MusicLabel
+@onready var music_slider = $Control/VBoxContainer/MusicGroup/MusicSlider as Slider
+@onready var music_player = $MusicPlayer
 
 func _ready():
 	language_menu.get_popup().id_pressed.connect(OnItemMenuPressed)
+	Constants.SfxVolume = 1.0
+	Constants.MusicVolume = 1.0
+	sfx_slider.value = 100.0
+	music_slider.value = 100.0
 	ChangeLanguage()
+	
 
 func ChangeLanguage():
 	action_area_start.SetText(Constants.GetMessage("BUTTON_START"))
 	action_area_about.SetText(Constants.GetMessage("BUTTON_ABOUT"))
 	action_area_quit.SetText(Constants.GetMessage("BUTTON_EXIT"))
-	controls.text = Constants.GetMessage("INSTRUCTIONS")
 	language_menu.text = Constants.GetMessage("BUTTON_LANGUAGE")
+	sfx_label.text = Constants.GetMessage("TEXT_SFX")
+	music_label.text = Constants.GetMessage("TEXT_MUSIC")
 
 func OnItemMenuPressed(id:int):
 	match id:
@@ -27,10 +38,10 @@ func OnItemMenuPressed(id:int):
 	ChangeLanguage()
 	
 func _on_action_area_start_action_activated(_key):
-	get_tree().change_scene_to_file("res://Stages/Stage1.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://Stages/Stage1.tscn")
 
 func _on_action_area_about_action_activated(_key):
-	get_tree().change_scene_to_file("res://Stages/About.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://Stages/About.tscn")
 
 func _on_action_area_quit_action_activated(_key):
 	get_tree().quit()
@@ -43,3 +54,10 @@ func _on_about_pressed():
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+func _on_sfx_slider_value_changed(value):
+	Constants.SfxVolume = value / 100	
+
+func _on_music_slider_value_changed(value):
+	Constants.MusicVolume = value / 100	
+	music_player.volume_db = remap(Constants.MusicVolume, 0.0, 1.0, -60.0, -15.0)

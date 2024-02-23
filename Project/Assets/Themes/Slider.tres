@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cnmpfywnk6ak4"]
+
+[ext_resource type="Texture2D" uid="uid://re5psf3a1bte" path="res://Assets/Graphics/Slider.png" id="1_5qy07"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s4upw"]
+color = Color(0.454902, 0, 0, 1)
+thickness = 10
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_5qy07")
+HSlider/icons/grabber_disabled = ExtResource("1_5qy07")
+HSlider/icons/grabber_highlight = ExtResource("1_5qy07")
+HSlider/styles/slider = SubResource("StyleBoxLine_s4upw")

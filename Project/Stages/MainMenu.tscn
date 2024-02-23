@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwxcyxwbmw2uq"]
+[gd_scene load_steps=12 format=3 uid="uid://bwxcyxwbmw2uq"]
 
 [ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="1_ivplr"]
 [ext_resource type="Script" path="res://Stages/MainMenu.gd" id="1_kqdml"]
@@ -6,7 +6,10 @@
 [ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="2_jlp4c"]
 [ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="3_u36re"]
 [ext_resource type="PackedScene" uid="uid://c4w502nr6epji" path="res://Player/Player.tscn" id="4_dw732"]
+[ext_resource type="Texture2D" uid="uid://bi48w8028o65n" path="res://Assets/Graphics/Instructions.png" id="5_nwdkm"]
 [ext_resource type="PackedScene" uid="uid://bejp05w8866c2" path="res://Components/ActionArea.tscn" id="5_r48b0"]
+[ext_resource type="Theme" uid="uid://cnmpfywnk6ak4" path="res://Assets/Themes/Slider.tres" id="6_bdedw"]
+[ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="10_bbbl5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qml0d"]
 blend_mode = 1
@@ -41,42 +44,6 @@ theme_override_font_sizes/font_size = 80
 text = "Ink Dragon"
 uppercase = true
 
-[node name="Controls" type="Label" parent="Control"]
-layout_mode = 1
-offset_left = 201.0
-offset_top = 506.0
-offset_right = 545.0
-offset_bottom = 604.0
-scale = Vector2(1.33606, 1.43492)
-theme = ExtResource("2_jlp4c")
-theme_override_font_sizes/font_size = 15
-text = "A -> Turn Counter-Clockwise
-D -> Turn Clockwise
-W, Space, Left mouse button -> Fire-Ball 
-Esc -> Pause"
-uppercase = true
-
-[node name="LanguageMenu" type="MenuButton" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 741.0
-offset_top = 25.0
-offset_right = 946.0
-offset_bottom = 74.0
-grow_horizontal = 0
-theme = ExtResource("2_jlp4c")
-theme_override_font_sizes/font_size = 25
-text = "LINGUA"
-item_count = 3
-popup/item_0/text = "Portugês"
-popup/item_0/id = 0
-popup/item_1/text = "Español"
-popup/item_1/id = 1
-popup/item_2/text = "English"
-popup/item_2/id = 2
-
 [node name="Start" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 990.0
@@ -101,6 +68,73 @@ offset_right = 153.0
 offset_bottom = 624.0
 flat = true
 
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 245.0
+offset_top = 456.0
+offset_right = 896.0
+offset_bottom = 661.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_nwdkm")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 27.0
+offset_right = 958.0
+offset_bottom = 120.0
+
+[node name="LanguageMenu" type="MenuButton" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jlp4c")
+theme_override_font_sizes/font_size = 25
+text = "LINGUA"
+alignment = 0
+item_count = 3
+popup/item_0/text = "Portugês"
+popup/item_0/id = 0
+popup/item_1/text = "Español"
+popup/item_1/id = 1
+popup/item_2/text = "English"
+popup/item_2/id = 2
+
+[node name="SFXGroup" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SFXLabel" type="Label" parent="Control/VBoxContainer/SFXGroup"]
+layout_mode = 2
+theme = ExtResource("2_jlp4c")
+theme_override_font_sizes/font_size = 25
+text = "SFX:"
+
+[node name="SFXSlider" type="HSlider" parent="Control/VBoxContainer/SFXGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_bdedw")
+
+[node name="MusicGroup" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MusicLabel" type="Label" parent="Control/VBoxContainer/MusicGroup"]
+layout_mode = 2
+theme = ExtResource("2_jlp4c")
+theme_override_font_sizes/font_size = 25
+text = "MUSIC:"
+
+[node name="MusicSlider" type="HSlider" parent="Control/VBoxContainer/MusicGroup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_bdedw")
+
 [node name="Foreground" type="Sprite2D" parent="."]
 z_index = 996
 material = SubResource("CanvasItemMaterial_qml0d")
@@ -109,18 +143,20 @@ scale = Vector2(1.12695, 0.641602)
 texture = ExtResource("3_u36re")
 
 [node name="Player" parent="." instance=ExtResource("4_dw732")]
-position = Vector2(41, 320)
+position = Vector2(110, 317)
 Imune = true
 
 [node name="ActionAreaStart" parent="." instance=ExtResource("5_r48b0")]
 position = Vector2(1049, 97)
 AreaText = "Start"
 Key = "START"
+Active = true
 
 [node name="ActionAreaAbout" parent="." instance=ExtResource("5_r48b0")]
 position = Vector2(1055, 572)
 AreaText = "About"
 Key = "ABOUT"
+Active = true
 
 [node name="ActionAreaQuit" parent="." instance=ExtResource("5_r48b0")]
 position = Vector2(94, 572)
@@ -128,9 +164,16 @@ scale = Vector2(1.00218, 1.03771)
 AreaText = "Quit"
 Key = "QUIT"
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_bbbl5")
+volume_db = -15.0
+autoplay = true
+
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/About" to="." method="_on_about_pressed"]
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="Control/VBoxContainer/SFXGroup/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/MusicGroup/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="ActionActivated" from="ActionAreaStart" to="." method="_on_action_area_start_action_activated"]
 [connection signal="ActionActivated" from="ActionAreaAbout" to="." method="_on_action_area_about_action_activated"]
 [connection signal="ActionActivated" from="ActionAreaQuit" to="." method="_on_action_area_quit_action_activated"]

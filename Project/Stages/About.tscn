@@ -45,26 +45,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 137.0
-offset_top = 154.0
-offset_right = 708.0
-offset_bottom = 477.0
+offset_left = 16.0
+offset_top = 144.0
+offset_right = 677.0
+offset_bottom = 505.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.33606, 1.43492)
 theme = ExtResource("2_h75oy")
 theme_override_font_sizes/font_size = 25
-text = "InkDragon
-CiaNCI Studio
+text = "INKDRAGON
+CIANCI STUDIO
 
-Arte - KelvysB.
-Design de personagem - KelvysB.
-Design de level - KelvysB.
-Texturas - KelvysB.
-Programação - KelvysB.
-Musica - 
-	Random Gods por likantropika
-	Horror Loop por TinyWorlds"
+ARTE - KELVYSB.
+DESIGN DE LEVEL - KELVYSB.
+TEXTURAS - KELVYSB.
+PROGRAMAÇÃO - KELVYSB.
+MUSICA - 
+	PANGEA POR PROFESSOR KLIQ (CC BY-NC-SA 4.0 DEED)
+	SFX - OPENGAMEART.ORG"
 uppercase = true
 
 [node name="Button" type="Button" parent="Control"]

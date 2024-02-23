@@ -10,9 +10,8 @@ var currentLang : LANGUAGE = LANGUAGE.pt
 var _messages_en : Dictionary = {}
 var _messages_pt : Dictionary = {}
 var _messages_esp : Dictionary = {}
-var _story_en : Dictionary = {}
-var _story_pt : Dictionary = {}
-var _story_esp : Dictionary = {}
+var SfxVolume : float = 1.0
+var MusicVolume : float = 1.0
 
 func _ready():
 	Build()
@@ -38,16 +37,16 @@ func GetMessage(key: String) -> String:
 			return _messages_esp.get(key)
 	return ""
 
-func _save(name : String, content : String):
-	var file = FileAccess.open("res://" + name, FileAccess.WRITE)
+func _save(fileName : String, content : String):
+	var file = FileAccess.open("res://" + fileName, FileAccess.WRITE)
 	file.store_string(content)
 	file.close()
 	
-func _load(name : String) -> Dictionary:
-	if not FileAccess.file_exists("res://" + name):
+func _load(fileName : String) -> Dictionary:
+	if not FileAccess.file_exists("res://" + fileName):
 		_save(name, "{}")
 		return {}
-	var file = FileAccess.open("res://" + name, FileAccess.READ)
+	var file = FileAccess.open("res://" + fileName, FileAccess.READ)
 	var json_object = JSON.new()
-	var parse_err = json_object.parse(file.get_as_text())	
+	var _parse_err = json_object.parse(file.get_as_text())	
 	return json_object.data

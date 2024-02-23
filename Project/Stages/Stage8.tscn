@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3v7eiy750dec"]
+
+[ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_hb26b"]
+[ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_6yvgo"]
+[ext_resource type="Texture2D" uid="uid://cdc7ok2bokcv5" path="res://Assets/Background/Foreground.png" id="3_4x0g5"]
+[ext_resource type="Theme" uid="uid://d0n3nqyxcgwle" path="res://Assets/Themes/Label.tres" id="4_bjqq4"]
+[ext_resource type="PackedScene" uid="uid://c4w502nr6epji" path="res://Player/Player.tscn" id="5_stwgk"]
+[ext_resource type="PackedScene" uid="uid://5a6xul3u481j" path="res://Stages/StageLimits.tscn" id="6_lj7xk"]
+[ext_resource type="PackedScene" uid="uid://bejp05w8866c2" path="res://Components/ActionArea.tscn" id="7_gp6au"]
+[ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="11_iteon"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
+blend_mode = 1
+
+[node name="Stage" type="Node2D" node_paths=PackedStringArray("ExitPoint", "StageLabel", "HintLabel", "MusicPlayer")]
+script = ExtResource("1_hb26b")
+ExitPoint = NodePath("ActionArea")
+StageLabel = NodePath("Control/Label")
+HintLabel = NodePath("Control/Hint")
+HintKey = "THANKS"
+NextStage = "res://Stages/MainMenu.tscn"
+StageNumber = "8"
+MusicPlayer = NodePath("AudioStreamPlayer")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("2_6yvgo")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_wtqiv")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("3_4x0g5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 49.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("4_bjqq4")
+text = "STAGE"
+
+[node name="Hint" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 184.0
+offset_right = 967.0
+offset_bottom = 472.0
+theme = ExtResource("4_bjqq4")
+text = "INK DRAGON POR KELVYSB
+
+OBRIGADO POR JOGAR!
+É SÓ ISSO POR ENQUANTO."
+
+[node name="Player" parent="." instance=ExtResource("5_stwgk")]
+position = Vector2(56, 584)
+scale = Vector2(1, 1.00908)
+Imune = true
+
+[node name="Limits" parent="." instance=ExtResource("6_lj7xk")]
+
+[node name="ActionArea" parent="." instance=ExtResource("7_gp6au")]
+position = Vector2(1064, 576)
+AreaText = "NEXT"
+Key = "EXIT"
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_iteon")
+volume_db = -15.0

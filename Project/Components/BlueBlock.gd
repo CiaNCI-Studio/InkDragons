@@ -8,15 +8,11 @@ const BLOCK_DESTRUCT_EFFECT = preload("res://Assets/Effects/BlockDestructEffect.
 @onready var right_point = $FirePoints/RightPoint
 @onready var left_point = $FirePoints/LeftPoint
 
+@onready var block_sfx = $BlockSFX
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
+	
 func Destroy():
 	var instance = BLOCK_DESTRUCT_EFFECT.instantiate()
 	get_parent().add_child(instance)

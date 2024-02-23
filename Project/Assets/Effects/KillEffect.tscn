@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbwsg7qnuo826"]
+[gd_scene load_steps=12 format=3 uid="uid://cbwsg7qnuo826"]
 
 [ext_resource type="Script" path="res://Assets/Effects/KillEffect.gd" id="1_1lig4"]
 [ext_resource type="Texture2D" uid="uid://eqpjtbt1ohfw" path="res://Assets/Inks/InkSmallDarkRedSprites.png" id="1_7vjtg"]
+[ext_resource type="AudioStream" uid="uid://drxvn6qxrrbkk" path="res://Assets/Audio/atari_fire_2.wav" id="3_ogkih"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5rpu1"]
 particles_animation = true
@@ -61,3 +62,6 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ogkih")

@@ -67,17 +67,17 @@ anim_offset_max = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7t28l"]
 radius = 23.0
-height = 62.0
+height = 68.4004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5wui"]
-radius = 7.07107
+radius = 9.05539
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 10
 script = ExtResource("1_ey1qr")
 
 [node name="TrailParticles" type="GPUParticles2D" parent="."]
-position = Vector2(-40, 0)
+position = Vector2(-48.7998, 0.200188)
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_pemqu")
@@ -86,20 +86,20 @@ trail_sections = 2
 
 [node name="SideParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_kme6l")
-position = Vector2(-7, 0)
+position = Vector2(-15.7998, 0.200188)
 rotation = -0.00522727
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ub4a2")
 texture = ExtResource("4_stnu4")
 
 [node name="HeadSprite" type="Sprite2D" parent="."]
-position = Vector2(10, -3.55271e-14)
+position = Vector2(1.20019, 0.200188)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_hh6c6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -1.20371e-35)
+position = Vector2(-0.799812, 0.200188)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7t28l")
 
@@ -108,16 +108,18 @@ wait_time = 0.05
 autostart = true
 
 [node name="GunPoint" type="Marker2D" parent="."]
-position = Vector2(31, 0)
+position = Vector2(22.2002, 0.200188)
 
 [node name="TrailPoint" type="Marker2D" parent="."]
+position = Vector2(-8.79981, 0.200188)
 
 [node name="ContactArea" type="Area2D" parent="." groups=["player_contact"]]
-position = Vector2(30, 0)
+position = Vector2(14.2002, 0.200188)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+position = Vector2(7.79981, -0.200188)
 shape = SubResource("CircleShape2D_g5wui")
 
 [node name="Tail" type="Node2D" parent="."]
@@ -188,6 +190,9 @@ wait_time = 0.2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("6_qwx0b")]
 visible = false
+
+[node name="PlayerSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-8.79981, 0.200188)
 
 [connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
