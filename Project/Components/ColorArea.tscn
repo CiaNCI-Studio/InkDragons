@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnc2b3mbf4yk2"]
+
+[ext_resource type="Script" path="res://Components/ColorArea.gd" id="1_w6bw1"]
+[ext_resource type="Texture2D" uid="uid://bf2n71xq1pp6e" path="res://Assets/Inks/ColorArea.png" id="2_w2u0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evmja"]
+size = Vector2(64, 64)
+
+[node name="ColorArea" type="Node2D"]
+script = ExtResource("1_w6bw1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_w2u0x")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_evmja")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

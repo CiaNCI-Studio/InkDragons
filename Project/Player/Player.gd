@@ -14,6 +14,8 @@ const INK_TRAIL = preload("res://Player/InkTrail.tscn") as PackedScene
 var flashOn = true
 @onready var head_sprite = $HeadSprite
 @onready var hud = $CanvasLayer/Hud as HUD
+@onready var side_particles = $SideParticles
+@onready var trail_particles = $TrailParticles
 
 const SPEED = 200.0
 const ROT_SPEED = 0.3
@@ -26,11 +28,14 @@ var currentDirection = 0
 @export var Imune : bool = false
 var fireTimer = 0.0
 var imunityTimer = 0.0
+var currentColor : Color = Color.RED
 
 func _ready():
 	if Imune:
 		hud.visible = false	
 	hud.SetLife(lives)
+	side_particles.modulate = currentColor
+	side_particles.modulate = currentColor
 
 func _physics_process(delta):
 	if fireTimer > 0.0:
@@ -43,20 +48,44 @@ func _physics_process(delta):
 		Pause()
 		
 	if Input.is_action_just_pressed("Fire"):		
-		Fire()
+		Fire()	
 	
-	if Input.is_action_just_pressed("Right"):
-		currentDirection += 1
-	elif Input.is_action_just_pressed("Left"):
-		currentDirection -= 1
-	if currentDirection > directions.size() - 1: 
-		currentDirection = 0
-	if currentDirection < 0:
-		currentDirection = directions.size() - 1
+	var direction = Input.get_vector("Left", "Right", "Up", "Down")
+	
+	if !(direction.y != 0 and direction.x != 0):		
+		if currentDirection == 0:
+			if direction.y > 0:
+				currentDirection += 1
+			elif direction.y < 0:
+				currentDirection -= 1
+		elif currentDirection == 2:
+			if direction.y > 0:
+				currentDirection -= 1
+			elif direction.y < 0:
+				currentDirection += 1
+		elif currentDirection == 1:
+			if direction.x > 0:
+				currentDirection -= 1
+			elif direction.x < 0:
+				currentDirection += 1
+		elif currentDirection == 3:
+			if direction.x > 0:
+				currentDirection += 1
+			elif direction.x < 0:
+				currentDirection -= 1	
+		if currentDirection > directions.size() - 1: 
+			currentDirection = 0
+		if currentDirection < 0:
+			currentDirection = directions.size() - 1
 	rotation = lerp_angle(rotation, deg_to_rad(directions[currentDirection]), 0.5)
 	velocity = transform.x * SPEED
 	move_and_slide()
 
+func ChangeColor(color : Color):
+	currentColor = color
+	side_particles.modulate = currentColor
+	side_particles.modulate = currentColor
+	
 func Damage():
 	if imunityTimer <= 0.0:
 		player_sfx.stream = DAMAGE_TAKEN
@@ -86,12 +115,15 @@ func FlashImunity():
 		flash_timer.stop()
 
 func Fire():
+	if lives <= 0: 
+		return 
 	if fireTimer <= 0:
 		player_sfx.stream = ATARI_FIRE_1
 		player_sfx.volume_db = remap(Constants.SfxVolume, 0.0, 1.0, -60.0, -15.0)
 		player_sfx.play()
 		fireTimer = fireCadence
 		var instance = PROJECTILE.instantiate() as Projectile
+		instance.TargetColor = currentColor
 		get_parent().add_child(instance)
 		instance.global_position = gun_point.global_position
 		instance.global_rotation = gun_point.global_rotation
@@ -105,8 +137,9 @@ func Pause():
 	
 func _on_trail_timer_timeout():
 	if lives > 0:
-		var instance = INK_TRAIL.instantiate() 
-		get_parent().add_child(instance)
+		var instance = INK_TRAIL.instantiate() as InkTrail
+		instance.TargetColor =  currentColor
+		get_parent().add_child(instance)		
 		instance.z_index = z_index - 1
 		instance.global_position = trail_point.global_position
 		instance.global_rotation = trail_point.global_rotation

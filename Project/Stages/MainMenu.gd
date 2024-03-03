@@ -11,11 +11,10 @@ extends Node2D
 @onready var music_player = $MusicPlayer
 
 func _ready():
-	language_menu.get_popup().id_pressed.connect(OnItemMenuPressed)
-	Constants.SfxVolume = 1.0
-	Constants.MusicVolume = 1.0
-	sfx_slider.value = 100.0
-	music_slider.value = 100.0
+	language_menu.get_popup().id_pressed.connect(OnItemMenuPressed)	
+	sfx_slider.value = remap(Constants.SfxVolume, 0, 1, 0, 100)
+	music_slider.value = remap(Constants.MusicVolume, 0, 1, 0, 100)
+	music_player.volume_db = remap(Constants.MusicVolume, 0.0, 1.0, -60.0, -15.0)
 	ChangeLanguage()
 	
 

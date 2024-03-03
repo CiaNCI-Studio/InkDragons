@@ -2,10 +2,15 @@ extends RigidBody2D
 class_name Projectile
 
 const PROJECTILE_DESTRUCTION_EFFECT = preload("res://Assets/Effects/ProjectileDestructionEffect.tscn")
-@export var LifeTime : float = 10.0
+@export var LifeTime : float = 5.0
+@export var TargetColor : Color = Color.RED
 @onready var sprite_2d = $Sprite2D
 @onready var trails = $Trails
 
+func _ready():
+	sprite_2d.modulate = TargetColor
+	trails.modulate = TargetColor
+	
 func Destroy():
 	var instance = PROJECTILE_DESTRUCTION_EFFECT.instantiate()
 	get_parent().add_child(instance)
@@ -15,8 +20,8 @@ func Destroy():
 func _process(delta):
 	LifeTime -= delta
 	if LifeTime <= 0:
-		queue_free() 
-
+		Destroy()
+	
 
 func _on_explosion_particles_finished():
 	queue_free() 

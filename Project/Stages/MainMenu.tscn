@@ -24,6 +24,36 @@ position = Vector2(572, 333)
 scale = Vector2(1.12695, 0.641602)
 texture = ExtResource("1_ivplr")
 
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 996
+material = SubResource("CanvasItemMaterial_qml0d")
+position = Vector2(572, 333)
+scale = Vector2(1.12695, 0.641602)
+texture = ExtResource("3_u36re")
+
+[node name="Player" parent="." instance=ExtResource("4_dw732")]
+position = Vector2(110, 317)
+Imune = true
+
+[node name="ActionAreaStart" parent="." instance=ExtResource("5_r48b0")]
+position = Vector2(1049, 97)
+AreaText = "Start"
+Key = "START"
+Active = true
+
+[node name="ActionAreaAbout" parent="." instance=ExtResource("5_r48b0")]
+position = Vector2(1055, 572)
+AreaText = "About"
+Key = "ABOUT"
+Active = true
+
+[node name="ActionAreaQuit" parent="." instance=ExtResource("5_r48b0")]
+position = Vector2(94, 572)
+scale = Vector2(1.00218, 1.03771)
+AreaText = "Quit"
+Key = "QUIT"
+Active = true
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -76,9 +106,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 245.0
-offset_top = 456.0
+offset_top = 380.0
 offset_right = 896.0
-offset_bottom = 661.0
+offset_bottom = 677.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_nwdkm")
@@ -135,45 +165,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_bdedw")
 
-[node name="Foreground" type="Sprite2D" parent="."]
-z_index = 996
-material = SubResource("CanvasItemMaterial_qml0d")
-position = Vector2(572, 333)
-scale = Vector2(1.12695, 0.641602)
-texture = ExtResource("3_u36re")
-
-[node name="Player" parent="." instance=ExtResource("4_dw732")]
-position = Vector2(110, 317)
-Imune = true
-
-[node name="ActionAreaStart" parent="." instance=ExtResource("5_r48b0")]
-position = Vector2(1049, 97)
-AreaText = "Start"
-Key = "START"
-Active = true
-
-[node name="ActionAreaAbout" parent="." instance=ExtResource("5_r48b0")]
-position = Vector2(1055, 572)
-AreaText = "About"
-Key = "ABOUT"
-Active = true
-
-[node name="ActionAreaQuit" parent="." instance=ExtResource("5_r48b0")]
-position = Vector2(94, 572)
-scale = Vector2(1.00218, 1.03771)
-AreaText = "Quit"
-Key = "QUIT"
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_bbbl5")
 volume_db = -15.0
 autoplay = true
 
+[connection signal="ActionActivated" from="ActionAreaStart" to="." method="_on_action_area_start_action_activated"]
+[connection signal="ActionActivated" from="ActionAreaAbout" to="." method="_on_action_area_about_action_activated"]
+[connection signal="ActionActivated" from="ActionAreaQuit" to="." method="_on_action_area_quit_action_activated"]
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/About" to="." method="_on_about_pressed"]
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
 [connection signal="value_changed" from="Control/VBoxContainer/SFXGroup/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="Control/VBoxContainer/MusicGroup/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="ActionActivated" from="ActionAreaStart" to="." method="_on_action_area_start_action_activated"]
-[connection signal="ActionActivated" from="ActionAreaAbout" to="." method="_on_action_area_about_action_activated"]
-[connection signal="ActionActivated" from="ActionAreaQuit" to="." method="_on_action_area_quit_action_activated"]

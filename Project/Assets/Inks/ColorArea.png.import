@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hof82m1326d4"
-path="res://.godot/imported/BlockBlue.png-871b607dd0c2b1a45f64a11e64543e46.ctex"
+uid="uid://bf2n71xq1pp6e"
+path="res://.godot/imported/ColorArea.png-7cf9324de7a35e763fa3865a4db9bef1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Blocks/BlockBlue.png"
-dest_files=["res://.godot/imported/BlockBlue.png-871b607dd0c2b1a45f64a11e64543e46.ctex"]
+source_file="res://Assets/Inks/ColorArea.png"
+dest_files=["res://.godot/imported/ColorArea.png-7cf9324de7a35e763fa3865a4db9bef1.ctex"]
 
 [params]
 

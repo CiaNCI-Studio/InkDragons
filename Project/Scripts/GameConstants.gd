@@ -12,6 +12,7 @@ var _messages_pt : Dictionary = {}
 var _messages_esp : Dictionary = {}
 var SfxVolume : float = 1.0
 var MusicVolume : float = 1.0
+var LastStage = "res://Stages/Stage1.tscn"
 
 func _ready():
 	Build()

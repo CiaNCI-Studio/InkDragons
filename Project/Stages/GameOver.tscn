@@ -58,6 +58,13 @@ offset_bottom = 611.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Restart" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d0flx")
+theme_override_font_sizes/font_size = 40
+text = "REINICIAR"
+flat = true
+
 [node name="MainMenu" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_d0flx")
@@ -65,4 +72,5 @@ theme_override_font_sizes/font_size = 40
 text = "MENU PRINCIPAL"
 flat = true
 
+[connection signal="pressed" from="Control/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

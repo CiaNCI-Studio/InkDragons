@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cly5wpqaef84g"]
+[gd_scene load_steps=14 format=3 uid="uid://cly5wpqaef84g"]
 
 [ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_hcvm7"]
 [ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_ae6al"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cdah5cfgfj0ob" path="res://Components/Block.tscn" id="9_82m6i"]
 [ext_resource type="PackedScene" uid="uid://e5aof4yo0j22" path="res://Components/BlueBlock.tscn" id="10_g3wne"]
 [ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="11_2ksih"]
+[ext_resource type="PackedScene" uid="uid://cnc2b3mbf4yk2" path="res://Components/ColorArea.tscn" id="12_dkvgv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
 blend_mode = 1
@@ -210,9 +211,11 @@ position = Vector2(523, 304)
 
 [node name="Block9" parent="Blocks" instance=ExtResource("9_82m6i")]
 position = Vector2(488, 136)
+TargeColor = Color(0, 0, 1, 1)
 
 [node name="Block5" parent="Blocks" instance=ExtResource("9_82m6i")]
 position = Vector2(704, 464)
+TargeColor = Color(0, 0, 1, 1)
 
 [node name="Block3" parent="Blocks" instance=ExtResource("9_82m6i")]
 position = Vector2(360, 312)
@@ -220,6 +223,7 @@ BlockLifes = 1
 
 [node name="Block4" parent="Blocks" instance=ExtResource("9_82m6i")]
 position = Vector2(40, 472)
+TargeColor = Color(0, 0, 1, 1)
 
 [node name="Block2" parent="Blocks" instance=ExtResource("9_82m6i")]
 position = Vector2(864, 296)
@@ -233,6 +237,7 @@ position = Vector2(360, 464)
 
 [node name="BlueBlock2" parent="Blocks" instance=ExtResource("10_g3wne")]
 position = Vector2(703, 295)
+TargetColor = Color(0, 1, 0, 1)
 
 [node name="BlueBlock3" parent="Blocks" instance=ExtResource("10_g3wne")]
 position = Vector2(368, 136)
@@ -240,3 +245,14 @@ position = Vector2(368, 136)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_2ksih")
 volume_db = -15.0
+
+[node name="ColorArea" parent="." instance=ExtResource("12_dkvgv")]
+position = Vector2(200, 464)
+TargeColor = Color(0, 0, 1, 1)
+
+[node name="ColorArea3" parent="." instance=ExtResource("12_dkvgv")]
+position = Vector2(1024, 176)
+
+[node name="ColorArea2" parent="." instance=ExtResource("12_dkvgv")]
+position = Vector2(784, 544)
+TargeColor = Color(0, 1, 0, 1)

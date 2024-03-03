@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvxletn5sf732"
-path="res://.godot/imported/BlockRed.png-9d818462fee01abf9281e176aced0e79.ctex"
+uid="uid://cyb16xf8omsf7"
+path="res://.godot/imported/PowerUp2.png-2167662203eb663360006dd4ec411e68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Blocks/BlockRed.png"
-dest_files=["res://.godot/imported/BlockRed.png-9d818462fee01abf9281e176aced0e79.ctex"]
+source_file="res://Assets/Inks/PowerUp2.png"
+dest_files=["res://.godot/imported/PowerUp2.png-2167662203eb663360006dd4ec411e68.ctex"]
 
 [params]
 

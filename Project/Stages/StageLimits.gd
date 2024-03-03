@@ -8,6 +8,7 @@ extends Node2D
 @onready var up_point = $UpPoint
 @onready var down_point = $DownPoint
 
+
 func _ready():
 	left.connect("body_entered", LeftPass)
 	right.connect("body_entered", RightPass)

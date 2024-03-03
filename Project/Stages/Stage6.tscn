@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://egowsjgkk1jg"]
+[gd_scene load_steps=14 format=3 uid="uid://egowsjgkk1jg"]
 
 [ext_resource type="Script" path="res://Stages/StageBase.gd" id="1_ckxur"]
 [ext_resource type="Texture2D" uid="uid://ca4y3ff80t36f" path="res://Assets/Background/background.png" id="2_gaye8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cdah5cfgfj0ob" path="res://Components/Block.tscn" id="9_11554"]
 [ext_resource type="AudioStream" uid="uid://cu3y8hmdtlw4u" path="res://Assets/Audio/Pangea_-_Professor_Kliq.mp3" id="10_g7i60"]
 [ext_resource type="PackedScene" uid="uid://e5aof4yo0j22" path="res://Components/BlueBlock.tscn" id="11_5xk31"]
+[ext_resource type="PackedScene" uid="uid://cnc2b3mbf4yk2" path="res://Components/ColorArea.tscn" id="12_bwio2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtqiv"]
 blend_mode = 1
@@ -146,32 +147,42 @@ position = Vector2(698, 128)
 [node name="Block" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(200, 624)
 BlockLifes = 3
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block2" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(536, 616)
 BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block3" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(696, 616)
 BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block8" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(1016, 616)
 BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block4" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(944, 48)
 BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block7" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(1104, 48)
 BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block5" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(776, 48)
+BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="Block6" parent="Blocks" instance=ExtResource("9_11554")]
 position = Vector2(376, 48)
+BlockLifes = 1
+TargeColor = Color(0, 1, 0, 1)
 
 [node name="BlueBlock" parent="Blocks" instance=ExtResource("11_5xk31")]
 position = Vector2(454, 616)
@@ -181,9 +192,11 @@ position = Vector2(616, 616)
 
 [node name="BlueBlock3" parent="Blocks" instance=ExtResource("11_5xk31")]
 position = Vector2(776, 616)
+TargetColor = Color(0, 0, 1, 1)
 
 [node name="BlueBlock4" parent="Blocks" instance=ExtResource("11_5xk31")]
 position = Vector2(864, 48)
+TargetColor = Color(0, 0, 1, 1)
 
 [node name="BlueBlock5" parent="Blocks" instance=ExtResource("11_5xk31")]
 position = Vector2(1026, 48)
@@ -191,3 +204,10 @@ position = Vector2(1026, 48)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_g7i60")
 volume_db = -15.0
+
+[node name="ColorArea" parent="." instance=ExtResource("12_bwio2")]
+position = Vector2(528, 320)
+TargeColor = Color(0, 0, 1, 1)
+
+[node name="ColorArea2" parent="." instance=ExtResource("12_bwio2")]
+position = Vector2(288, 320)

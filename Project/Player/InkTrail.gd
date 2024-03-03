@@ -2,12 +2,14 @@ extends Node2D
 class_name InkTrail
 
 @export var Lifetime : float = 5.0
+@export var TargetColor : Color = Color.RED
 var delay = 5.0
 var active = true
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimatedSprite2D
 
 func _ready():
 	animated_sprite_2d.frame = randi_range(0, 3)
+	animated_sprite_2d.modulate = TargetColor
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
